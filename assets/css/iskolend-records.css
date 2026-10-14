@@ -1,0 +1,148 @@
+.iskolend-records-page {
+  --records-border: #e3e3e1;
+  --records-muted: #6c6c69;
+  --records-ink: #1c1c1c;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.iskolend-records-page .card {
+  border: 1px solid var(--records-border);
+  border-radius: 16px;
+}
+
+.iskolend-records-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.iskolend-records-heading h2 {
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+  font-weight: 650;
+}
+
+.iskolend-record-filters {
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) repeat(4, minmax(130px, 1fr));
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.iskolend-record-filters .form-label {
+  display: block;
+  margin: 0 0 6px;
+  color: var(--records-muted);
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.iskolend-record-filters .form-control,
+.iskolend-record-filters .form-select {
+  width: 100%;
+  min-height: 42px;
+}
+
+.iskolend-records-page .table-wrap {
+  overflow-x: auto;
+}
+
+.iskolend-record-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .84rem;
+  white-space: nowrap;
+}
+
+.iskolend-record-table th,
+.iskolend-record-table td {
+  padding: 10px 9px;
+  border: 1px solid var(--records-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.iskolend-record-table th {
+  background: #f7f7f6;
+  color: var(--records-ink);
+  font-size: .76rem;
+  font-weight: 650;
+}
+
+.iskolend-record-state {
+  padding: 34px 16px !important;
+  color: var(--records-muted);
+  text-align: center !important;
+}
+
+.iskolend-record-state.is-error {
+  color: #8a2d2d;
+}
+
+.iskolend-status-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #d4d4d1;
+  border-radius: 999px;
+  padding: 3px 9px;
+  background: #f2f2f0;
+  color: #454543;
+  font-size: .72rem;
+  font-weight: 650;
+}
+
+.iskolend-status-badge.is-overdue,
+.iskolend-status-badge.is-lost {
+  border-color: #e3c4c4;
+  background: #f8eded;
+  color: #822d2d;
+}
+
+.iskolend-status-badge.is-returned {
+  border-color: #bbd9c1;
+  background: #edf7ef;
+  color: #286338;
+}
+
+.iskolend-status-badge.is-damaged {
+  border-color: #e6d1a5;
+  background: #fff7e6;
+  color: #795613;
+}
+
+.iskolend-record-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  font-size: .85rem;
+}
+
+@media (max-width: 1050px) {
+  .iskolend-record-filters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .iskolend-record-search {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 650px) {
+  .iskolend-records-heading,
+  .iskolend-record-pagination {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .iskolend-record-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .iskolend-record-search {
+    grid-column: 1 / -1;
+  }
+}

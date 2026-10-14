@@ -1,0 +1,130 @@
+/* Printan ng Bayan — records page. Gray palette, additive, scoped to .printan-records-page.
+   Load AFTER your main stylesheet. */
+
+.printan-records-page {
+  --pr-surface: #ffffff;
+  --pr-surface-2: #fafafa;
+  --pr-border: #e3e3e6;
+  --pr-border-strong: #c9c9ce;
+  --pr-text: #1f2023;
+  --pr-muted: #6b6d73;
+  --pr-soft: #ececee;
+  --pr-strong: #2b2d31;
+  --pr-radius: 12px;
+  --pr-radius-sm: 8px;
+  --pr-ease: cubic-bezier(.2, .7, .2, 1);
+}
+.printan-records-page .card + .card, .printan-records-page section + section { margin-top: 1.25rem; }
+
+/* ---------- Headings ---------- */
+.printan-records-page h2 { font-size: 1.375rem; font-weight: 700; letter-spacing: -.01em; color: var(--pr-text); }
+.printan-records-page .form-label { font-size: .8125rem; font-weight: 600; color: #3a3c41; margin-bottom: .3rem; }
+
+.printan-daily-heading, .printan-records-heading {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 1.5rem; margin-bottom: 1.25rem;
+}
+.printan-daily-heading .form-control { min-width: 170px; }
+
+/* ---------- Daily summary ---------- */
+.printan-daily-card .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+.printan-daily-card .stat-card {
+  background: var(--pr-surface-2); border: 1px solid var(--pr-border); border-radius: var(--pr-radius);
+  padding: 1rem 1.25rem; text-align: left; box-shadow: none;
+}
+.printan-daily-card .stat-card .num {
+  font-size: 1.875rem; font-weight: 700; line-height: 1.1; color: var(--pr-text);
+  font-variant-numeric: tabular-nums; transition: opacity .2s;
+}
+.printan-daily-card .stat-card .lbl { margin-top: .35rem; font-size: .8125rem; color: var(--pr-muted); }
+.printan-daily-card .stat-card:last-child { background: var(--pr-strong); border-color: var(--pr-strong); }
+.printan-daily-card .stat-card:last-child .num { color: #fff; }
+.printan-daily-card .stat-card:last-child .lbl { color: #c9c9ce; }
+.printan-daily-card.is-loading .num { opacity: .35; }
+#dailyMetricsMessage { min-height: 1.25rem; }
+
+/* ---------- Filters ---------- */
+.printan-record-filters {
+  display: grid; grid-template-columns: minmax(220px, 2fr) repeat(3, minmax(120px, 1fr));
+  gap: .75rem; padding: 1rem; margin-bottom: .75rem;
+  background: var(--pr-surface-2); border: 1px solid var(--pr-border); border-radius: var(--pr-radius);
+}
+.printan-records-page .form-control:focus, .printan-records-page .form-select:focus {
+  border-color: var(--pr-strong); box-shadow: 0 0 0 3px rgba(43, 45, 49, .15);
+}
+.printan-record-filters input[type="search"] {
+  padding-left: 2.25rem;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236b6d73' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='7' cy='7' r='5.5'/%3E%3Cpath d='m11 11 3.5 3.5'/%3E%3C/svg%3E") no-repeat .75rem center;
+}
+
+.printan-quick-row { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1rem; }
+.printan-chip {
+  border: 1px solid var(--pr-border); background: var(--pr-surface); color: var(--pr-muted);
+  border-radius: 999px; padding: .3rem .85rem; font-size: .8125rem; font-weight: 500; cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.printan-chip:hover { border-color: var(--pr-border-strong); color: var(--pr-text); }
+.printan-chip.is-active { background: var(--pr-strong); border-color: var(--pr-strong); color: #fff; }
+.printan-clear { margin-left: auto; background: none; border: 0; padding: .3rem .25rem; font-size: .8125rem; color: var(--pr-muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.printan-clear:hover { color: var(--pr-text); }
+
+/* ---------- Table ---------- */
+.printan-records-page .table-wrap {
+  max-height: 560px; overflow: auto; border: 1px solid var(--pr-border); border-radius: var(--pr-radius); background: var(--pr-surface);
+}
+.printan-record-table { width: 100%; margin: 0; border-collapse: separate; border-spacing: 0; font-size: .875rem; }
+.printan-record-table thead th {
+  position: sticky; top: 0; z-index: 2; background: var(--pr-surface-2); color: var(--pr-muted);
+  font-size: .75rem; font-weight: 600; text-align: left; white-space: nowrap;
+  padding: .7rem .875rem; border-bottom: 1px solid var(--pr-border);
+}
+.printan-record-table tbody td { padding: .7rem .875rem; border-bottom: 1px solid var(--pr-soft); color: var(--pr-text); vertical-align: middle; }
+.printan-record-table tbody tr:last-child td { border-bottom: 0; }
+.printan-record-table tbody tr:hover td { background: var(--pr-surface-2); }
+.printan-record-table th:last-child, .printan-record-table td:last-child { text-align: right; }
+.printan-record-table td.is-amount { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.pr-date { display: block; font-weight: 500; white-space: nowrap; }
+.pr-time { display: block; font-size: .75rem; color: var(--pr-muted); }
+.pr-name { font-weight: 500; }
+
+.pr-color { display: inline-block; padding: .15rem .5rem; border: 1px solid var(--pr-border); border-radius: 6px; background: var(--pr-soft); color: var(--pr-strong); font-size: .75rem; font-weight: 600; white-space: nowrap; }
+
+/* States */
+.pr-state { text-align: center; padding: 2.5rem 1rem !important; color: var(--pr-muted); }
+.pr-state strong { display: block; color: var(--pr-text); font-size: 1rem; margin-bottom: .2rem; }
+.pr-state.is-error strong { color: var(--pr-strong); }
+.pr-skeleton td { padding: .9rem .875rem !important; }
+.pr-skeleton td span { display: block; height: .7rem; border-radius: 4px; background: linear-gradient(90deg, var(--pr-soft), #f6f6f7, var(--pr-soft)); background-size: 200% 100%; animation: pr-shimmer 1.2s linear infinite; }
+@keyframes pr-shimmer { to { background-position: -200% 0; } }
+
+/* ---------- Totals + pagination ---------- */
+.printan-totals { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding: .75rem .25rem; font-size: .875rem; color: var(--pr-muted); }
+.printan-totals strong { color: var(--pr-text); font-variant-numeric: tabular-nums; }
+.printan-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; padding-top: .25rem; font-size: .875rem; }
+
+/* ---------- Focus / motion ---------- */
+.printan-records-page .btn:focus-visible, .printan-chip:focus-visible, .printan-clear:focus-visible { outline: 2px solid var(--pr-strong); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .printan-records-page * { transition: none !important; animation: none !important; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991.98px) {
+  .printan-record-filters { grid-template-columns: 1fr 1fr; }
+  .printan-record-filters > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 767.98px) {
+  .printan-daily-card .grid { grid-template-columns: 1fr; }
+  .printan-records-heading .d-flex { width: 100%; }
+  .printan-records-heading .btn { flex: 1 1 auto; text-align: center; }
+
+  /* Table becomes a stack of cards */
+  .printan-records-page .table-wrap { max-height: none; border: 0; background: transparent; }
+  .printan-record-table thead { display: none; }
+  .printan-record-table, .printan-record-table tbody, .printan-record-table tr, .printan-record-table td { display: block; width: 100%; }
+  .printan-record-table tbody tr { background: var(--pr-surface); border: 1px solid var(--pr-border); border-radius: var(--pr-radius); margin-bottom: .75rem; padding: .35rem 0; }
+  .printan-record-table tbody td { display: flex; justify-content: space-between; align-items: center; gap: 1rem; border: 0; padding: .4rem .875rem; text-align: right !important; }
+  .printan-record-table tbody td::before { content: attr(data-label); flex: 0 0 auto; font-size: .75rem; font-weight: 600; color: var(--pr-muted); text-align: left; }
+  .printan-record-table tbody tr:hover td { background: transparent; }
+  .printan-record-table td.pr-state { display: block; text-align: center !important; }
+  .printan-record-table td.pr-state::before { content: none; }
+}
+@media (max-width: 479.98px) { .printan-record-filters { grid-template-columns: 1fr; } }

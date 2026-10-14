@@ -1,0 +1,22 @@
+# Local database and environment credentials
+/config/db.php
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Database dumps and exports
+*.sql
+!database/schema.sql
+
+# Local uploads and backups
+/uploads/
+/backups/
+
+# Logs and operating-system metadata
+*.log
+Thumbs.db
+.DS_Store
+
+# Editor settings
+.vscode/

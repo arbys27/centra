@@ -1,0 +1,11 @@
+Options -Indexes
+
+<FilesMatch "^\.(htaccess|htpasswd)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(config|database|tools|setup|logs)/ - [F,L]
+    RewriteRule ^uploads/.*\.(php|phtml|php3|php4|php5|php7|shtml|cgi|pl|exe|bat|cmd)$ - [F,L]
+</IfModule>
